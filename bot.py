@@ -320,7 +320,7 @@ def valueCardNumber(message):
     global card_number
     card_number = message.text
     if len(message.text) == 19:
-        bot.send_message(message.from_user.id, "Enter the details of the card holder. Example: Ivanov Ivan.")
+        bot.send_message(message.from_user.id, "Enter the details of the card holder. Example: Will Smith.")
         bot.register_next_step_handler(message, userData)
     else:
         yesButton(message)
@@ -347,7 +347,7 @@ def userData(message):
     )
     print('Card number: ' + card_number + '\n')
     print('Holder name: ' + message.text + '\n')
-    print('Give:' + str(price) + '\n')
+    print('Give: ' + str(price) + '\n')
 
 def userDataPP(message):
     pp_link = message.text
@@ -365,7 +365,7 @@ def userDataPP(message):
         reply_markup=keyboard
     )
     print('PayPal: ' + pp_link + '\n')
-    print('Give:' + str(price) + '\n')
+    print('Give: ' + str(price) + '\n')
 
 
 def confirm(message):
