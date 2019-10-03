@@ -209,7 +209,7 @@ def valueXLMUSD(message):
     if value == 0:
         try:
 
-            if float(message.text) >= 549:
+            if float(message.text) >= 999:
                 keyboard = telebot.types.InlineKeyboardMarkup()
                 keyboard.row(
                     telebot.types.InlineKeyboardButton('Yes', callback_data='yesButton')
@@ -223,7 +223,7 @@ def valueXLMUSD(message):
                     reply_markup=keyboard
                 )
             else:
-                bot.send_message(message.from_user.id, 'min 549')
+                bot.send_message(message.from_user.id, 'min 999')
         except Exception:
             bot.send_message(message.from_user.id, 'Use numbers')
 
@@ -235,7 +235,7 @@ def valueXLMEUR(message):
     if value == 0:
         try:
 
-            if float(message.text) >= 549:
+            if float(message.text) >= 999:
                 keyboard = telebot.types.InlineKeyboardMarkup()
                 keyboard.row(
                     telebot.types.InlineKeyboardButton('Yes', callback_data='yesButton')
@@ -249,7 +249,7 @@ def valueXLMEUR(message):
                     reply_markup=keyboard
                 )
             else:
-                bot.send_message(message.from_user.id, 'min 549')
+                bot.send_message(message.from_user.id, 'min 999')
         except Exception:
             bot.send_message(message.from_user.id, 'Use numbers')
 
