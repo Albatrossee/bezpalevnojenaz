@@ -1,7 +1,7 @@
 import telebot
 from emoji import emojize
 
-TOKEN = '1006699889:AAFt9EP5faZkI0asuKjZOHM51KNj6EIv48o'
+TOKEN = '1024298973:AAG3Jy_M_vlDBOb9NCYJySYY44xtQG0Q5Tc'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 price = 0
