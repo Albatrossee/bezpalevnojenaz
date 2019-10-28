@@ -6,7 +6,7 @@ one_day = timedelta(1)
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
-TOKEN = '944230566:AAHyTtKv_XfIALzxuI7EpoQBGz9f42x72Hk'
+TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 monA = "8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
@@ -32,7 +32,7 @@ def start_command(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
-    bot.send_message(message.chat.id, "Нах тебе те пары иди бухай ",  reply_markup=keyboard)
+    bot.send_message(message.chat.id, "На пары ? Неужели",  reply_markup=keyboard)
     bot.delete_message(message.chat.id, message.message_id - 1)
 
 
