@@ -1,26 +1,24 @@
 import telebot
 from datetime import datetime
 from datetime import timedelta
-now = datetime.now()
 one_day = timedelta(1)
-one_hour = timedelta(0,0,0,0,1)
-our_time = now + one_hour
+now = datetime.now() + timedelta(hours=1)
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
 TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
-monA = "8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-monB = "8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-tueA = " 13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-tueB = " 13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-wen = "Свободный день"
-thuA = "9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-thuB = "13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-friA = "Свободный день"
-friB = "8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-sun = "В воскресенье нету занятий"
+monA = "Время:" + str(now.strftime('%H:%M:%S')) + "\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+monB = "Время:" + str(now.strftime('%H:%M:%S')) + "\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+tueA = "Время:" + str(now.strftime('%H:%M:%S')) + "\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+tueB = "Время:" + str(now.strftime('%H:%M:%S')) + "\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+wen = "Время:" + str(now.strftime('%H:%M:%S')) + "\nСвободный день"
+thuA = "Время:" + str(now.strftime('%H:%M:%S')) + "\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+thuB = "Время:" + str(now.strftime('%H:%M:%S')) + "\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+friA = "Время:" + str(now.strftime('%H:%M:%S')) + "\nСвободный день"
+friB = "Время:" + str(now.strftime('%H:%M:%S')) + "\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+sun = "Время:" + str(now.strftime('%H:%M:%S')) + "\nВ воскресенье нету занятий"
 
 
 
@@ -34,7 +32,7 @@ def start_command(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
-    bot.send_message(message.chat.id, "На пары ? Неужели" + str(now),  reply_markup=keyboard)
+    bot.send_message(message.chat.id,"Время:" + str(now.strftime('%H:%M:%S')) + "\nНа пары ? Неужели",  reply_markup=keyboard)
     bot.delete_message(message.chat.id, message.message_id - 1)
 
 
