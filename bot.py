@@ -2,7 +2,7 @@ import telebot
 from datetime import datetime
 from datetime import timedelta
 one_day = timedelta(1)
-now = datetime.now() + timedelta(hours=1)
+goabal now
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
@@ -24,6 +24,7 @@ sun = "Время:" + str(now.strftime('%H:%M')) + "\nВоскресенье\nВ
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
+    now = datetime.now() + timedelta(hours=1)
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -42,37 +43,47 @@ def iq_callback(query):
     data = query.data
     if data.startswith('today'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         today(query.message)
     if data.startswith('tomorow'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         tomorow(query.message)
     if data.startswith('a'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         todaya(query.message)
     if data.startswith('b'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         todayb(query.message)
     if data.startswith('ta'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         tomorowa(query.message)
     if data.startswith('tb'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         tomorowb(query.message)
     if data.startswith('back'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         back(query.message)
     if data.startswith('qwerty'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         vsedni(query.message)
 
 
     if data.startswith('Monday'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         monday(query.message)
 
 
     if data.startswith('Tuesday'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -82,19 +93,23 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('tuea'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "A"
         tuesday(query.message, answer)
     if data.startswith('tueb'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "B"
         tuesday(query.message, answer)
 
     if data.startswith('Wednesday'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         wednesday(query.message)
 
     if data.startswith('Thursday'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -104,15 +119,18 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('thua'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "A"
         thursday(query.message, answer)
     if data.startswith('thub'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "B"
         thursday(query.message, answer)
 
     if data.startswith('Friday'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -122,10 +140,12 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('fria'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "A"
         friday(query.message, answer)
     if data.startswith('frib'):
         bot.answer_callback_query(query.id)
+        now = datetime.now() + timedelta(hours=1)
         answer = "B"
         friday(query.message, answer)
 
