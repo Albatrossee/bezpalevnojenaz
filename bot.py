@@ -10,7 +10,7 @@ dayp = str(tomoroww.strftime("%A"))
 TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
-monA = "Время:" + str(datetime.now() + timedelta(hours=1)) + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+monA = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%A")) + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
 monB = "Время:" + str(datetime.now() + timedelta(hours=1)) + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
 tueA = "Время:" + str(datetime.now() + timedelta(hours=1)) + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
 tueB = "Время:" + str(datetime.now() + timedelta(hours=1)) + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
