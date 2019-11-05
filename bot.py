@@ -6,16 +6,6 @@ now1 = datetime.now()
 tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
-global monA
-global monB
-global tueA
-global tueB
-global wen
-global thuA
-global thuB
-global friA
-global friB
-global sun
 
 TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
@@ -26,6 +16,16 @@ value = 0
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
+    global monA
+    global monB
+    global tueA
+    global tueB
+    global wen
+    global thuA
+    global thuB
+    global friA
+    global friB
+    global sun
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
@@ -45,7 +45,7 @@ def start_command(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
-    bot.send_message(message.chat.id,"Время:" + str(datetime.now() + timedelta(hours=1)) + "\n\nНа пары ? Неужели",  reply_markup=keyboard)
+    bot.send_message(message.chat.id,"Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\n\nНа пары ? Неужели",  reply_markup=keyboard)
     bot.delete_message(message.chat.id, message.message_id - 1)
 
 
@@ -153,17 +153,6 @@ def iq_callback(query):
         back(query.message)
     if data.startswith('qwerty'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         vsedni(query.message)
 
 
