@@ -4,7 +4,6 @@ from datetime import timedelta
 one_day = timedelta(1)
 now1 = datetime.now()
 global now
-now = datetime.now() + timedelta(hours=1)
 tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
