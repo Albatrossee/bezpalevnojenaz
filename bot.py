@@ -346,6 +346,7 @@ def iq_callback(query):
 
 def today(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('A', callback_data='a'),
@@ -355,6 +356,7 @@ def today(message):
 
 def tomorow(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('A', callback_data='ta'),
@@ -363,6 +365,7 @@ def tomorow(message):
 
 def tomorowa(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     tomorow = dayp
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -389,6 +392,7 @@ def tomorowa(message):
 
 def tomorowb(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     tomorow = dayp
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -416,6 +420,7 @@ def tomorowb(message):
 
 def todaya(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     todaya = str(now.strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -442,6 +447,7 @@ def todaya(message):
 
 def todayb(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     todayb = str(now.strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -468,6 +474,7 @@ def todayb(message):
 
 def vsedni(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Понедельник', callback_data='Monday'))
@@ -484,6 +491,7 @@ def vsedni(message):
 
 def monday(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -496,6 +504,7 @@ def monday(message):
 
 def tuesday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -511,6 +520,7 @@ def tuesday(message, answer):
 
 def wednesday(message):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -524,6 +534,7 @@ def wednesday(message):
 
 def thursday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -540,6 +551,7 @@ def thursday(message, answer):
 
 def friday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
