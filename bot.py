@@ -26,6 +26,7 @@ def start_command(message):
     global friA
     global friB
     global sun
+    global now
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
@@ -365,7 +366,6 @@ def tomorow(message):
 
 def tomorowa(message):
     bot.delete_message(message.chat.id, message.message_id)
-    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     tomorow = dayp
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -392,7 +392,6 @@ def tomorowa(message):
 
 def tomorowb(message):
     bot.delete_message(message.chat.id, message.message_id)
-    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     tomorow = dayp
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
@@ -421,7 +420,7 @@ def tomorowb(message):
 def todaya(message):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todaya = str(now.strftime("%A"))
+    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -448,7 +447,7 @@ def todaya(message):
 def todayb(message):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todayb = str(now.strftime("%A"))
+    todayb = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
