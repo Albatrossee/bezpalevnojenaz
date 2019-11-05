@@ -7,7 +7,7 @@ tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
 
-TOKEN = '1041547843:AAF2DlivGAzH21lDPu-ZutPNL1h63aMx-zU'
+TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 
