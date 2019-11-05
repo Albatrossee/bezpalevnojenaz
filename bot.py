@@ -3,7 +3,6 @@ from datetime import datetime
 from datetime import timedelta
 one_day = timedelta(1)
 now1 = datetime.now()
-global now
 tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
@@ -25,6 +24,7 @@ sun = "Время:" + now + "\nВоскресенье\nВ воскресенье
 
 @bot.message_handler(commands=['start'])
 def start_command(message):
+    global now
     now = datetime.now() + timedelta(hours=1)
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
