@@ -6,7 +6,7 @@ one_day = timedelta(1)
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
-TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
+TOKEN = '1041547843:AAF2DlivGAzH21lDPu-ZutPNL1h63aMx-zU'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 monA = "8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
