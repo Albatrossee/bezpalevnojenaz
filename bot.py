@@ -455,7 +455,7 @@ def todayb(message):
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todayb = sstr((datetime.now() + timedelta(hours=1)).strftime("%A"))
+    todayb = str((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todayb == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
     if(todayb == "Tuesday"):
