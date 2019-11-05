@@ -428,7 +428,7 @@ def todaya(message):
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
+    todaya = str((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todaya == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
     if(todaya == "Tuesday"):
@@ -455,7 +455,7 @@ def todayb(message):
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
+    todayb = sstr((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todayb == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
     if(todayb == "Tuesday"):
