@@ -7,7 +7,7 @@ tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
 
-TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
+TOKEN = '1041547843:AAF2DlivGAzH21lDPu-ZutPNL1h63aMx-zU'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 
@@ -56,101 +56,24 @@ def iq_callback(query):
     data = query.data
     if data.startswith('today'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         today(query.message)
     if data.startswith('tomorow'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         tomorow(query.message)
     if data.startswith('a'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         todaya(query.message)
     if data.startswith('b'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         todayb(query.message)
     if data.startswith('ta'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         tomorowa(query.message)
     if data.startswith('tb'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         tomorowb(query.message)
     if data.startswith('back'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         back(query.message)
     if data.startswith('qwerty'):
         bot.answer_callback_query(query.id)
@@ -159,33 +82,11 @@ def iq_callback(query):
 
     if data.startswith('Monday'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         monday(query.message)
 
 
     if data.startswith('Tuesday'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -195,63 +96,19 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('tuea'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "A"
         tuesday(query.message, answer)
     if data.startswith('tueb'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "B"
         tuesday(query.message, answer)
 
     if data.startswith('Wednesday'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         wednesday(query.message)
 
     if data.startswith('Thursday'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -261,49 +118,16 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('thua'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "A"
         thursday(query.message, answer)
     if data.startswith('thub'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "B"
         thursday(query.message, answer)
 
     if data.startswith('Friday'):
         bot.answer_callback_query(query.id)
         bot.delete_message(query.message.chat.id, query.message.message_id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton('A', callback_data='fria'),
@@ -312,32 +136,11 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('fria'):
         bot.answer_callback_query(query.id)
-        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "A"
         friday(query.message, answer)
     if data.startswith('frib'):
         bot.answer_callback_query(query.id)
         now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-        monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-        tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-        tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-        wen = "Время:" + now + "\nСреда\nСвободный день"
-        thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-        thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-        friA = "Время:" + now + "\nПятница\nСвободный день"
-        friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-        sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
         answer = "B"
         friday(query.message, answer)
 
@@ -375,6 +178,17 @@ def tomorowa(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     if(tomorow == "Monday"):
         bot.send_message(message.chat.id, monA, reply_markup=keyboard)
     if(tomorow == "Tuesday"):
@@ -401,6 +215,17 @@ def tomorowb(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     if(tomorow == "Monday"):
         bot.send_message(message.chat.id, monB, reply_markup=keyboard)
     if(tomorow == "Tuesday"):
@@ -428,6 +253,16 @@ def todaya(message):
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     todaya = str((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todaya == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
@@ -455,6 +290,16 @@ def todayb(message):
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     todayb = str((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todayb == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
@@ -491,6 +336,16 @@ def vsedni(message):
 def monday(message):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -504,6 +359,16 @@ def monday(message):
 def tuesday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -520,6 +385,16 @@ def tuesday(message, answer):
 def wednesday(message):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -534,6 +409,16 @@ def wednesday(message):
 def thursday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -551,6 +436,16 @@ def thursday(message, answer):
 def friday(message, answer):
     bot.delete_message(message.chat.id, message.message_id)
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+    wen = "Время:" + now + "\nСреда\nСвободный день"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    friA = "Время:" + now + "\nПятница\nСвободный день"
+    friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+    sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
