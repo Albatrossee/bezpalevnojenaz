@@ -3,10 +3,12 @@ from datetime import datetime
 from datetime import timedelta
 now = datetime.now()
 one_day = timedelta(1)
+one_hour = timedelta(0,0,0,0,1)
+our_time = now + one_hour
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
-TOKEN = '1041547843:AAF2DlivGAzH21lDPu-ZutPNL1h63aMx-zU'
+TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 monA = "8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
