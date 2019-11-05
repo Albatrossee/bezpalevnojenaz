@@ -32,7 +32,7 @@ def start_command(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
-    bot.send_message(message.chat.id,"Время:" + str(now.strftime('%H:%M:%S')) + "\nНа пары ? Неужели",  reply_markup=keyboard)
+    bot.send_message(message.chat.id,"Время:" + str(now.strftime('%H:%M')) + "\nНа пары ? Неужели",  reply_markup=keyboard)
     bot.delete_message(message.chat.id, message.message_id - 1)
 
 
