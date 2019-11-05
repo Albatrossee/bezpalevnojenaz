@@ -2,24 +2,25 @@ import telebot
 from datetime import datetime
 from datetime import timedelta
 one_day = timedelta(1)
+now1 = datetime.now()
 global now
 now = datetime.now() + timedelta(hours=1)
-tomoroww = now + one_day
+tomoroww = now1 + one_day
 dayp = str(tomoroww.strftime("%A"))
 
 TOKEN = '975925818:AAEWY89tap7F9VSLidJMvHRQVfQHlK1Sids'
 bot = telebot.TeleBot(TOKEN)
 value = 0
-monA = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-monB = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-tueA = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
-tueB = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
-wen = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nСреда\nСвободный день"
-thuA = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-thuB = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
-friA = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nПятница\nСвободный день"
-friB = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
-sun = "Время:" + str((datetime.now() + timedelta(hours=1)).strftime("%H:%M")) + "\nВоскресенье\nВ воскресенье нету занятий"
+monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
+tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
+wen = "Время:" + now + "\nСреда\nСвободный день"
+thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+thuB = "Время:" + now + "\nЧетверг\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\n13:15-14:45 Techniki przetwarzania wielowatkowego (laboratorium)\nBobinski Piotr\nKab 329\n\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+friA = "Время:" + now + "\nПятница\nСвободный день"
+friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
+sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
 
 
 
@@ -44,47 +45,47 @@ def iq_callback(query):
     data = query.data
     if data.startswith('today'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         today(query.message)
     if data.startswith('tomorow'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         tomorow(query.message)
     if data.startswith('a'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         todaya(query.message)
     if data.startswith('b'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         todayb(query.message)
     if data.startswith('ta'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         tomorowa(query.message)
     if data.startswith('tb'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         tomorowb(query.message)
     if data.startswith('back'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         back(query.message)
     if data.startswith('qwerty'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         vsedni(query.message)
 
 
     if data.startswith('Monday'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         monday(query.message)
 
 
     if data.startswith('Tuesday'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -94,23 +95,23 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('tuea'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "A"
         tuesday(query.message, answer)
     if data.startswith('tueb'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "B"
         tuesday(query.message, answer)
 
     if data.startswith('Wednesday'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         wednesday(query.message)
 
     if data.startswith('Thursday'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -120,18 +121,18 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('thua'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "A"
         thursday(query.message, answer)
     if data.startswith('thub'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "B"
         thursday(query.message, answer)
 
     if data.startswith('Friday'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
@@ -141,12 +142,12 @@ def iq_callback(query):
         bot.send_message(query.message.chat.id, "Выбери неделю:", reply_markup=keyboard)
     if data.startswith('fria'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "A"
         friday(query.message, answer)
     if data.startswith('frib'):
         bot.answer_callback_query(query.id)
-        now = datetime.now() + timedelta(hours=1)
+        now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "B"
         friday(query.message, answer)
 
