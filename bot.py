@@ -419,8 +419,6 @@ def tomorowb(message):
 
 def todaya(message):
     bot.delete_message(message.chat.id, message.message_id)
-    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -429,6 +427,8 @@ def todaya(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todaya == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
     if(todaya == "Tuesday"):
@@ -446,8 +446,6 @@ def todaya(message):
 
 def todayb(message):
     bot.delete_message(message.chat.id, message.message_id)
-    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
-    todayb = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
@@ -456,6 +454,8 @@ def todayb(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
     )
+    now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
+    todaya = str(((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todayb == "Monday"):
         bot.send_message(message.chat.id, monA,reply_markup=keyboard)
     if(todayb == "Tuesday"):
