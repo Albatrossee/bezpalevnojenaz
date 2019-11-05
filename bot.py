@@ -303,6 +303,7 @@ def iq_callback(query):
 
     if data.startswith('Friday'):
         bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
         now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
         monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
@@ -314,7 +315,6 @@ def iq_callback(query):
         friA = "Время:" + now + "\nПятница\nСвободный день"
         friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
         sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
-            bot.delete_message(query.message.chat.id, query.message.message_id)
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton('A', callback_data='fria'),
