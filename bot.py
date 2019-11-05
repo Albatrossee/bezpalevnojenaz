@@ -2,7 +2,7 @@ import telebot
 from datetime import datetime
 from datetime import timedelta
 one_day = timedelta(1)
-goabal now
+global now
 tomoroww = now + one_day
 dayp = str(tomoroww.strftime("%A"))
 
