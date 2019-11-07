@@ -33,8 +33,8 @@ def start_command(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -143,9 +143,24 @@ def iq_callback(query):
         now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
         answer = "B"
         friday(query.message, answer)
+    if data.startswith('donate'):
+        bot.answer_callback_query(query.id)
+        
+        donate(query.message) 
 
 
-
+def donate(message):
+    bot.delete_message(message.chat.id, message.message_id)
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Сегодня', callback_data='today'),
+        telebot.types.InlineKeyboardButton('Завтра', callback_data='tomorow')
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty'))
+    bot.send_message(message.chat.id, "Дайте грошей:",reply_markup=keyboard)
+    return
 
 
 def today(message):
@@ -177,6 +192,7 @@ def tomorowa(message):
     )
     keyboard.row(
         telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
+        telebot.types.InlineKeyboardButton('Donate', callback_data='donate')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
@@ -184,8 +200,8 @@ def tomorowa(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -221,8 +237,8 @@ def tomorowb(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -258,8 +274,8 @@ def todaya(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -295,8 +311,8 @@ def todayb(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -341,8 +357,8 @@ def monday(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -364,8 +380,8 @@ def tuesday(message, answer):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -390,8 +406,8 @@ def wednesday(message):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -414,8 +430,8 @@ def thursday(message, answer):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
@@ -441,8 +457,8 @@ def friday(message, answer):
     tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСмена в Ашане"
-    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
-    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (wyklad)\nInżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
+    thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 329\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
+    thuB = "Время:" + now + "\n13:15-14:45 IO-Techniki przetwarzania wielowatkowego (laboratorium)\nKab 329\n\n15:00-16:30 IO-Techniki przetwarzania wielowatkowego (wyklad)\nKab 329\n\n16:45-18:15 Inżynieria oprogramowania\nZawadzki Mariusz\nKab 108"
     friA = "Время:" + now + "\nПятница\nСмена в Ашане"
     friB = "Время:" + now + "\nПятница\n8:00-9:30 Administrowanie sieciami komputerowymi (laboratorium)\nDariusz\nKab 227\n\n9:45-11:15 Sieci computerowe (laboratorium)\nDariusz\nKab 227"
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
