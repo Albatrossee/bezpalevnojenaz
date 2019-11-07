@@ -30,7 +30,7 @@ def start_command(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -181,7 +181,7 @@ def tomorowa(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -218,7 +218,7 @@ def tomorowb(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -255,7 +255,7 @@ def todaya(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -292,7 +292,7 @@ def todayb(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -302,15 +302,15 @@ def todayb(message):
     sun = "Время:" + now + "\nВоскресенье\nВ воскресенье нету занятий"
     todayb = str((datetime.now() + timedelta(hours=1)).strftime("%A"))
     if(todayb == "Monday"):
-        bot.send_message(message.chat.id, monA,reply_markup=keyboard)
+        bot.send_message(message.chat.id, monB,reply_markup=keyboard)
     if(todayb == "Tuesday"):
-        bot.send_message(message.chat.id, tueA,reply_markup=keyboard)
+        bot.send_message(message.chat.id, tueB,reply_markup=keyboard)
     if(todayb == "Wednesday"):
         bot.send_message(message.chat.id, wen,reply_markup=keyboard)
     if(todayb == "Thursday"):
-        bot.send_message(message.chat.id, thuA,reply_markup=keyboard)
+        bot.send_message(message.chat.id, thuB,reply_markup=keyboard)
     if(todayb == "Friday"):
-        bot.send_message(message.chat.id, friA,reply_markup=keyboard)
+        bot.send_message(message.chat.id, friB,reply_markup=keyboard)
     if(todayb == "Saturday"):
         bot.send_message(message.chat.id, "В субботу нету занятий",reply_markup=keyboard)
     if(todayb == "Sunday"):
@@ -338,7 +338,7 @@ def monday(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -361,7 +361,7 @@ def tuesday(message, answer):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -387,7 +387,7 @@ def wednesday(message):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -411,7 +411,7 @@ def thursday(message, answer):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
@@ -438,7 +438,7 @@ def friday(message, answer):
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
     monA = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
     monB = "Время:" + now + "\nПонедельник\n8:00-9:30 Systemy wbudowane (wyklad)\nPiotr Bilski\nKab 104\n\n9:45-11:15 Sieci komputerowe (wyklad)\nDariusz\nKab 227"
-    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 0"
+    tueA = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (wyklad)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nProjektowanie aplikacji bazodanowych (laboratorium)\nPelczynski Pawel\nKab 5"
     tueB = "Время:" + now + "\nВторник\n13:15-14:45\nPodstawowe techniki animacji komputerowej (laboratorium)\nAntoniuk Izabella\nKab 227\n\n15:00-16:30\nSztuczna intelegencja (laboratorium)\nZawadski Mariusz\nKab 5"
     wen = "Время:" + now + "\nСреда\nСвободный день"
     thuA = "Время:" + now + "\nЧетверг\n9:45-11:15 Inżynieria oprogramowania (wyklad)\nBilski Adrian\nKab 305\n\n13:15-14:45 Gkiai-Wzorce architektoniczne serwisow internetowych (laboratorium)\nBobinski Piotr\nKab 329\n\n15:00-16:30 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329\n\n16:45-18:15 Sztuczna intelegencja(wyklad)\nBilski Adrian\nKab 329"
