@@ -191,7 +191,7 @@ def tomorowa(message):
         telebot.types.InlineKeyboardButton('Завтра', callback_data='tomorow')
     )
     keyboard.row(
-        telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty')
+        telebot.types.InlineKeyboardButton('Все дни', callback_data='qwerty'),
         telebot.types.InlineKeyboardButton('Donate', callback_data='donate')
     )
     now = str((datetime.now() + timedelta(hours=1)).strftime("%H:%M"))
