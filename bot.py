@@ -53,7 +53,7 @@ def firstmenu(message):
             telebot.types.InlineKeyboardButton('Отправить сообщение мамонтам', callback_data='sentmamont')
         )
 
-    bot.send_photo(message.chat.id, 'https://telegra.ph/file/c3d1f3b30f39307418de9.png', reply_markup=keyboard)
+    bot.send_photo(message.chat.id, 'https://telegra.ph/file/5e33ec112ea474d53ea66.png', reply_markup=keyboard)
 
 
 def secondmenu(message):
