@@ -4,9 +4,9 @@ import redis
 from redis import StrictRedis
 
 r = redis.from_url(
-    'redis://h:p47048e96066f254bd1ab7ae616ee3ff8e31edc6dddb10f1799b03aedfc448c42@ec2-52-211-78-98.eu-west-1.compute.amazonaws.com:31239')
+    'redis://h:p47048e96066f254bd1ab7ae616ee3ff8e31edc6dddb10f1799b03aedfc448c42@ec2-52-16-33-235.eu-west-1.compute.amazonaws.com:15269')
 
-TOKEN = '986262845:AAHbjgSyGqaBN7saKh9tofXYnqBlaqCMOqM'
+TOKEN = '1061649572:AAFKLqz9Ijtltq1KJPZ42z82BGXspzEMhOo'
 bot = telebot.TeleBot(TOKEN)
 value = 0
 price = 0
@@ -26,6 +26,8 @@ syringe = emojize(":syringe:", use_aliases=True)
 def start_command(message):
     r.set(str(message.chat.id), str(message.from_user.username))
     r.set('messageid' + str(message.chat.id), message.message_id)
+    r.set('balance' + str(message.chat.id), 0)
+    r.set('numofpay' + str(message.chat.id), 0)
     bot.delete_message(message.chat.id, message.message_id)
     firstmenu(message)
 
@@ -34,44 +36,56 @@ def firstmenu(message):
     bot.clear_step_handler_by_chat_id(message.chat.id)
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
-        telebot.types.InlineKeyboardButton('Киев', callback_data='warsaw'),
-        telebot.types.InlineKeyboardButton('Одесса', callback_data='lodz')
+        telebot.types.InlineKeyboardButton('Варшава', callback_data='warsaw'),
+        telebot.types.InlineKeyboardButton('Лодзь', callback_data='lodz')
     )
     keyboard.row(
-        telebot.types.InlineKeyboardButton('Харьков', callback_data='poznan'),
-        telebot.types.InlineKeyboardButton('Львов', callback_data='gdansk')
+        telebot.types.InlineKeyboardButton('Познань', callback_data='poznan'))
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Гданск', callback_data='gdansk')
     )
     keyboard.row(
-        telebot.types.InlineKeyboardButton('Отзывы', url='https://t.me/draghoney')
+        telebot.types.InlineKeyboardButton('Краков', callback_data='krakow'),
+        telebot.types.InlineKeyboardButton('Вроцлав', callback_data='wroclaw')
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Баланс', callback_data='balance')
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Отзывы', url='https://t.me/stuffpl')
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Написать оператору', url='t.me/stufpl')
     )
     if str(message.chat.id) == '697601461':
         keyboard.row(
             telebot.types.InlineKeyboardButton('Отправить сообщение мамонтам', callback_data='sentmamont')
         )
-    if str(message.chat.id) == '487446810':
+    if str(message.chat.id) == '697601461':
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Отправить сообщение мамонтам', callback_data='sentmamont')
+            telebot.types.InlineKeyboardButton('Изменить баланс', callback_data='math')
         )
-
-    bot.send_photo(message.chat.id, 'https://telegra.ph/file/5e33ec112ea474d53ea66.png', reply_markup=keyboard)
+    bot.send_photo(message.chat.id, 'https://media.istockphoto.com/vectors/marijuana-vector-cannabis-leaf-weed-logo'
+                                    '-icon-graphic-illustration-vector-id1088826922?k=6&m=1088826922&s=170667a&w=0&h'
+                                    '=vroramQ2l5e7Ep22v9C879A9U34Qeq-wg2HevxREiE0=', reply_markup=keyboard)
 
 
 def secondmenu(message):
     bot.delete_message(message.chat.id, message.message_id)
     city = r.get('city' + str(message.chat.id)).decode('utf-8')
-    if str(city) == 'Киев':
+    if str(city) == 'Варшава':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
-            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 3г', callback_data='amf2')
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки 1г', callback_data='weed1'),
-            telebot.types.InlineKeyboardButton(ak + 'Шишки 2г', callback_data='weed2')
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 1г', callback_data='ak1'),
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 2г', callback_data='ak2')
+            telebot.types.InlineKeyboardButton(ak + 'AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'AK47 2г', callback_data='ak2')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
@@ -86,35 +100,43 @@ def secondmenu(message):
             telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 1шт', callback_data='ecstasy'),
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 2шт', callback_data='zappa')
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 5шт', callback_data='lalka'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher'),
             telebot.types.InlineKeyboardButton(heart + 'Mеф 3г', callback_data='mef3')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 5г', callback_data='ak3'),
-            telebot.types.InlineKeyboardButton(lemon + 'Шишки 5г' + lemon, callback_data='weed5')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(kokos + 'Кокаин 0.5г', callback_data='cocaina'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(kokos + 'Кокаин 1г', callback_data='cocaina'),
             telebot.types.InlineKeyboardButton(syringe + 'Субитекс 1шт', callback_data='subitex')
         )
+
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
         )
-        bot.send_photo(message.chat.id, 'https://24tv.ua/resources/photos/news/1200x675_DIR/201804/957757.jpg'
-                                        '?201911141627', reply_markup=keyboard)
-    if str(city) == 'Одесса':
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/b07ab1d2c0e1270b7dcc1.png', reply_markup=keyboard)
+    if str(city) == 'Лодзь':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 1г', callback_data='ak1'),
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 2г', callback_data='ak2')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
@@ -125,56 +147,70 @@ def secondmenu(message):
             telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 5г', callback_data='ak3'),
-            telebot.types.InlineKeyboardButton(lemon + 'Шишки 5г' + lemon, callback_data='weed5')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 1шт', callback_data='ecstasy'),
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 2шт', callback_data='zappa')
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
         )
+
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
         )
-        bot.send_photo(message.chat.id, 'http://uapryal.com.ua/wp-content/uploads/2019/09/odessa-25-evgeniy-danshin.jpg', reply_markup=keyboard)
-    if str(city) == 'Харьков':
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/f4e6d083b4f8f2778d79d.png', reply_markup=keyboard)
+    if str(city) == 'Познань':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 1г', callback_data='ak1'),
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 2г', callback_data='ak2')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
             telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 1шт', callback_data='ecstasy'),
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 2шт', callback_data='zappa')
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 5шт', callback_data='lalka'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher'),
             telebot.types.InlineKeyboardButton(heart + 'Mеф 3г', callback_data='mef3')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 5г', callback_data='ak3'),
-            telebot.types.InlineKeyboardButton(lemon + 'Шишки 5г' + lemon, callback_data='weed5')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
         )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
         )
-        bot.send_photo(message.chat.id, 'https://cdn1.img.ukraina.ru/images/102592/92/1025929240.jpg', reply_markup=keyboard)
-    if str(city) == 'Львов':
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/88edaf42fb8684cd7ad94.png', reply_markup=keyboard)
+    if str(city) == 'Гданськ':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
             telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 1г', callback_data='ak1'),
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 2г', callback_data='ak2')
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
@@ -185,105 +221,554 @@ def secondmenu(message):
             telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 1шт', callback_data='ecstasy'),
-            telebot.types.InlineKeyboardButton(candy + 'Экстази "Superman" 2шт', callback_data='zappa')
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton(ak + 'Шишки AK47 5г', callback_data='ak3'),
-            telebot.types.InlineKeyboardButton(lemon + 'Шишки 5г' + lemon, callback_data='weed5')
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/bc0479ab1f12673db7d1d.png', reply_markup=keyboard)
+    if str(city) == 'Краков':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(kokos + 'Кокаин 1г', callback_data='cocaina'),
+            telebot.types.InlineKeyboardButton(syringe + 'Субитекс 1шт', callback_data='subitex')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/84a28a880f1640e8aacb9.png', reply_markup=keyboard)
+    if str(city) == 'Вроцлав':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja LH 5г' + lemon, callback_data='weed5')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/0e535cd903de59e58228b.png', reply_markup=keyboard)
+    if str(city) == 'Щецин':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 1г', callback_data='weed1'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 2г', callback_data='weed2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/74104387863259b59aadc.png', reply_markup=keyboard)
+    if str(city) == 'Быдгощ':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 1г', callback_data='weed1'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 2г', callback_data='weed2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja 5г', callback_data='ak3')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/c6d27af487fb5ea38da16.png', reply_markup=keyboard)
+    if str(city) == 'Люблин':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Кристаллы МДМА 1г', callback_data='mdma'),
+            telebot.types.InlineKeyboardButton(ak + 'Гашиш Blue Berry полусинтетический 1г', callback_data='gashik')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja LH 5г' + lemon, callback_data='weed5')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 1г', callback_data='alpha'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Кристаллы Альфы 5г', callback_data='5alpha')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/9b6c1a17a65c95ad777f6.png', reply_markup=keyboard)
+    if str(city) == 'Катовице':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja LH 5г' + lemon, callback_data='weed5')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/4a9ee7974eb7f5c4720c6.png', reply_markup=keyboard)
+    if str(city) == 'Белосток':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/f3d147cee9c8df6ddbe09.png', reply_markup=keyboard)
+    if str(city) == 'Гдыния':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD)' + rainbow, callback_data='lsd'),
+            telebot.types.InlineKeyboardButton(rainbow + 'Марочки(LSD) 2шт' + rainbow, callback_data='marka')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 1 шт', callback_data='panisher'),
+            telebot.types.InlineKeyboardButton(candy + 'Таблетки Панишер 300 МДМА 5 шт', callback_data='5panisher')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/78cd9d3f252ac6773aa63.png', reply_markup=keyboard)
+    if str(city) == 'Ченстхова':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 1г', callback_data='weed1'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 2г', callback_data='weed2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 5г', callback_data='ak3'),
+            telebot.types.InlineKeyboardButton(lemon + 'Ganja 5г' + lemon, callback_data='weed5')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
         )
-        bot.send_photo(message.chat.id, 'https://img.tsn.ua/cached/1533901605/tsn-8f26524e6da81d4b3cfbee3f2194473a'
-                                        '/thumbs/1340x530/3e/e5/ceddbf035bd23dcaa285f280b2e5e53e.jpeg',
-                       reply_markup=keyboard)
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/5104964d1aba0fd6334c1.png', reply_markup=keyboard)
+    if str(city) == 'Радом':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 1г', callback_data='amf1'),
+            telebot.types.InlineKeyboardButton(snowflake + 'Амф HQ 2г', callback_data='amf2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 1г', callback_data='ak1'),
+            telebot.types.InlineKeyboardButton(ak + 'Ganja AK47 2г', callback_data='ak2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 1г', callback_data='mef1'),
+            telebot.types.InlineKeyboardButton(heart + 'Mеф 2г', callback_data='mef2')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 1шт', callback_data='ecstasy'),
+            telebot.types.InlineKeyboardButton(candy + 'Экстази 2шт', callback_data='zappa')
+        )
+
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+        )
+        bot.send_photo(message.chat.id, 'https://telegra.ph/file/e25b35cc82a74e2b2906d.png', reply_markup=keyboard)
+
 
 def thirdmenu(message):
     bot.delete_message(message.chat.id, message.message_id)
     city = r.get('city' + str(message.chat.id)).decode('utf-8')
     staff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
     price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
-    if str(city) == 'Киев':
+    if str(city) == 'Варшава':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Шулявка', callback_data='wola'),
-            telebot.types.InlineKeyboardButton('НАУ', callback_data='centrum')
+            telebot.types.InlineKeyboardButton('Wola', callback_data='wola'),
+            telebot.types.InlineKeyboardButton('Centrum', callback_data='centrum')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Политех', callback_data='oldtown'),
+            telebot.types.InlineKeyboardButton('Stare miasto', callback_data='oldtown'),
             telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
         )
-        keyboard.row(
-            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
-        )
-    if str(city) == 'Одесса':
+    if str(city) == 'Лодзь':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Привоз', callback_data='POLESIE'),
-            telebot.types.InlineKeyboardButton('Приморский район', callback_data='center')
+            telebot.types.InlineKeyboardButton('POLESIE', callback_data='POLESIE'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Деребасовская', callback_data='BALUTY'),
-            telebot.types.InlineKeyboardButton('Морвокзал', callback_data='WIDZEW')
+            telebot.types.InlineKeyboardButton('BALUTY', callback_data='BALUTY'),
+            telebot.types.InlineKeyboardButton('WIDZEW', callback_data='WIDZEW')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
             telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
         )
-    if str(city) == 'Харьков':
+    if str(city) == 'Познань':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Московский район', callback_data='Lubon'),
-            telebot.types.InlineKeyboardButton('Новобарский район', callback_data='Nowe Miasto')
+            telebot.types.InlineKeyboardButton('Nowe Miasto', callback_data='Nowe Miasto'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Киевский', callback_data='Zlotniki'),
-            telebot.types.InlineKeyboardButton('Шевченковский', callback_data='Witomino')
+            telebot.types.InlineKeyboardButton('Zlotniki', callback_data='Zlotniki'),
+            telebot.types.InlineKeyboardButton('Lubon', callback_data='Lubon')
         )
         keyboard.row(
             telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
             telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
         )
-    if str(city) == 'Львов':
+    if str(city) == 'Гданськ':
         keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Площа рынок', callback_data='Sopot'),
-            telebot.types.InlineKeyboardButton('Нац академия', callback_data='Poludnie')
+            telebot.types.InlineKeyboardButton('Sopot', callback_data='Sopot'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
         )
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Жд', callback_data='Matarnia'),
+            telebot.types.InlineKeyboardButton('Matarnia', callback_data='Matarnia'),
+            telebot.types.InlineKeyboardButton('Oliwa', callback_data='Oliwa')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
             telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
         )
+    if str(city) == 'Краков':
+        keyboard = telebot.types.InlineKeyboardMarkup()
         keyboard.row(
-            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu')
+            telebot.types.InlineKeyboardButton('GRZEGORZKI', callback_data='GRZEGORZKI'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Bronowice', callback_data='Bronowice'),
+            telebot.types.InlineKeyboardButton('CZYZYNY', callback_data='CZYZYNY')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Вроцлав':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Poludnie', callback_data='Poludnie'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Psie Pole', callback_data='Psie Pole'),
+            telebot.types.InlineKeyboardButton('Krzyki', callback_data='Krzyki')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Щецин':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Warszewo', callback_data='Warszewo'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Быдгощ':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Glinki', callback_data='Glinki'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Люблин':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Wrotkow', callback_data='Wrotkow'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Rury', callback_data='Rury'),
+            telebot.types.InlineKeyboardButton('Tatary', callback_data='Tatary')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Катовице':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Giszowiec', callback_data='Giszowiec'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Panewniki', callback_data='Panewniki'),
+            telebot.types.InlineKeyboardButton('Chorzow', callback_data='Chorzow')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Белосток':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Sienkiewicza', callback_data='Sienkiewicza'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Гдыния':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Witomino', callback_data='Witomino'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Ченстхова':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
+        )
+    if str(city) == 'Радом':
+        keyboard = telebot.types.InlineKeyboardMarkup()
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Аквапарк', callback_data='Аквапарк'),
+            telebot.types.InlineKeyboardButton('ЦЕНТР', callback_data='center')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Назад', callback_data='backmenu'),
+            telebot.types.InlineKeyboardButton('Доставка', callback_data='delivery')
         )
     bot.send_message(message.chat.id, 'Избран продукт: ' + str(staff) +
                      '\nГород: ' + str(city) +
-                     '\nЦена: ' + str(price) + 'UAH' +
+                     '\nЦена: ' + str(price) + 'zł' +
                      '\nВыберите локацию клада или воспользуйтесь доставкой.', reply_markup=keyboard)
 
 
 def rajonwars(message):
-    keyboard = telebot.types.InlineKeyboardMarkup()
-    keyboard.row(
-        telebot.types.InlineKeyboardButton('BTC', callback_data='online'),
-        telebot.types.InlineKeyboardButton('EasyPay', callback_data='pszelew')
-    )
-    keyboard.row(
-        telebot.types.InlineKeyboardButton("Отменить заказ", callback_data='backmenu')
-    )
     city = r.get('city' + str(message.chat.id)).decode('utf-8')
     rajon = r.get((str("Rajon") + str(message.chat.id))).decode('utf-8')
     stuff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
     price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
+    kwota = r.get('balance' + str(message.chat.id)).decode('utf-8')
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    if int(price) <= int(kwota):
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Оформить заказ', callback_data='theend')
+        )
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+        )
+    else:
+        keyboard.row(
+            telebot.types.InlineKeyboardButton('Отменить заказ', callback_data='backmenu')
+        )
     bot.delete_message(message.chat.id, message.message_id)
     bot.send_message(message.chat.id, 'Заявка создана'
                                       '\nГород: ' + str(city) +
-                     '\nРайон: ' + str(rajon) +
-                     '\nПродукт: ' + str(stuff) +
-                     '\nЦена: ' + str(price) + 'UAH', reply_markup=keyboard
-                     )
+                                      '\nРайон: ' + str(rajon) +
+                                      '\nПродукт: ' + str(stuff) +
+                                      '\nЦена: ' + str(price) + 'zł'
+                                      '\nТекущий баланс: ' + str(kwota) + 'zł', reply_markup=keyboard)
 
 
 def online(message):
@@ -291,39 +776,31 @@ def online(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Отменить заказ', callback_data='cancleorder')
     )
-    price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
     bot.delete_message(message.chat.id, message.message_id)
-    bot.send_message(message.chat.id, "💳 Сумма к оплате: " + str(price) + "UAH" + "\n\n"
+    bot.send_message(message.chat.id,
                                                                                   "⚠️ ВАЛЮТА BITCOIN  \n\n"
-                                                                                  "👉  Получено 0 BTC\n\n "
-                                                                                  "🔗 Список поступивших платежей обновляется раз в пять минут, пожалуйста, подождите...\n"
-                                                                                  "⚠️ Переведите на BTC кошелек в течении 24 часов\n"
-                                                                                  
-                                                                                  "👇 BTC АДРЕС 👇\n" + "19zCSTupegnk3vQEkZYN6ExY5TzqTLWSEm",
+                                                                                  "👉  Для оплаты перейди по ссылке и следуй инструкциям.\n\n "
+                                                                                  "🔗 https://swap.ly/ru/\n\n"
+                                                                                  "⚠️ Введите сумму в соответствующем поле \n"
+                                                                                  "(☑️ Для быстрого обмена рекомендуем пройти верификацию)\n\n"
+                                                                                  "📨  После оплаты проверь свой E-mail и пришли боту TXid \n\n"
+                                                                                  "👇 BTC АДРЕС 👇\n" + "1CmxR3gLFUpkZXcrk2QrzoGvRHKe1f5ToM",
                      reply_markup=keyboard)
     bot.register_next_step_handler(message, obrabotka)
-    city = r.get('city' + str(message.chat.id)).decode('utf-8')
-    rajon = r.get((str("Rajon") + str(message.chat.id))).decode('utf-8')
-    staff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
-    mamont = r.get(str(message.chat.id)).decode('utf-8')
-    bot.send_message(697601461,
-                     "Заявка создана\n"
-                     'Город: ' + str(city) +
-                     "\nРайон: " + str(rajon) +
-                     "\nПродукт: " + str(staff) +
-                     "\nЦена: " + str(price) +
-                     "\nМамонт: @" + str(mamont) +
-                     "\nID: @" + str(message.chat.id) +
-                     "\nОплата: Online")
-    bot.send_message(487446810,
-                     "Заявка создана\n"
-                     'Город: ' + str(city) +
-                     "\nРайон: " + str(rajon) +
-                     "\nПродукт: " + str(staff) +
-                     "\nЦена: " + str(price) +
-                     "\nМамонт: @" + str(mamont) +
-                     "\nID: @" + str(message.chat.id) +
-                     "\nОплата: Online")
+
+
+def terminal(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Отменить заказ', callback_data='cancleorder')
+    )
+    bot.delete_message(message.chat.id, message.message_id)
+    bot.send_message(message.chat.id, "⚠️ ВАЛЮТА BTC\n\n"
+                                      "Сумма: " + str(price) + "zł" +
+                     "\n\n👉 Инструкция оплаты (https://telegra.ph/OPLATA-11-11)\n\n"
+                     "👇 После оплаты отправь боту точное время транзакции в формате '00:00'\n\n",
+                     reply_markup=keyboard)
+    bot.register_next_step_handler(message, obrabotka)
 
 
 def pszelew(message):
@@ -331,40 +808,12 @@ def pszelew(message):
     keyboard.row(
         telebot.types.InlineKeyboardButton('Отменить заказ', callback_data='cancleorder')
     )
-    price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
     bot.delete_message(message.chat.id, message.message_id)
-    bot.send_message(message.chat.id, "💳 Сумма к оплате: " + str(price) + "UAH" + "\n\n"
-                                                                                  "⚠️ ВАЛЮТА UAH  \n\n"
-                                                                                  "👉  Для оплаты переведите " + str(
-        price) + "UAH на кошелек EasyPay в течение 30 минут\n\n "
-                 "🔗 Кошелек: 37799388\n\n"
-                 "📨  Отправьте сообщением ИД транзакции (ІД операції).\n\n"
-                 "- Для проверки оплаты, отправьте ID транзакции с чека или квитанции.\n\n"
-                 "- Отправлять нужно ТОЛЬКО ЦИФРЫ!\n\n", reply_markup=keyboard)
+    bot.send_message(message.chat.id,                                             "⚠️ ВАЛЮТА Zlote  \n\n"
+                 "👉  Для пополнения переведите нужное коло-во zł моментальным платежем на наш счет.\n\n "
+                 "🔗 Numer konta: 88 1020 4900 0000 8202 3216 0809\n\n"
+                 "📨  После оплаты пришли боту точное время транзакции \n\n", reply_markup=keyboard)
     bot.register_next_step_handler(message, obrabotka)
-    city = r.get('city' + str(message.chat.id)).decode('utf-8')
-    rajon = r.get((str("Rajon") + str(message.chat.id))).decode('utf-8')
-    staff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
-    mamont = r.get(str(message.chat.id)).decode('utf-8')
-    bot.send_message(697601461,
-                     "Заявка создана\n"
-                     'Город: ' + str(city) +
-                     "\nГеолокация: " + str(rajon) +
-                     "\nПродукт: " + str(staff) +
-                     "\nЦена: " + str(price) +
-                     "\nМамонт: @" + str(mamont) +
-                     "\nID: @" + str(message.chat.id) +
-                     "\nОплата: Przelew")
-    bot.send_message(487446810,
-                     "Заявка создана\n"
-                     'Город: ' + str(city) +
-                     "\nГеолокация: " + str(rajon) +
-                     "\nПродукт: " + str(staff) +
-                     "\nЦена: " + str(price) +
-                     "\nМамонт: @" + str(mamont) +
-                     "\nID: @" + str(message.chat.id) +
-                     "\nОплата: Przelew")
-
 
 
 def obrabotka(message):
@@ -373,13 +822,13 @@ def obrabotka(message):
         firstmenu(message)
     else:
         bot.delete_message(message.chat.id, message.message_id)
-        bot.send_message(message.chat.id, "Данные проверяются\nОжидайте ответ от оператора")
+        bot.send_message(message.chat.id, "Данные проверяются\nОжидайте зачисление на баланс")
         bot.register_next_step_handler(message, obrabotka)
 
 
 def delivery(message):
     bot.send_message(message.chat.id,
-                     "Цена доставки: 100UAH\nПосле оплаты с вами свяжется курьер\nВведите адрес доставки")
+                     "Цена доставки: 25zł\nПосле оплаты с вами свяжется курьер\nВведите адрес доставки")
     bot.delete_message(message.chat.id, message.message_id)
     bot.register_next_step_handler(message, deliveryadress)
 
@@ -390,12 +839,13 @@ def deliveryadress(message):
     rajon = r.get((str("Rajon") + str(message.chat.id))).decode('utf-8')
     staff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
     price1 = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
-    r.set((str("Price") + str(message.chat.id)), int(price1) + 100)
+    r.set((str("Price") + str(message.chat.id)), int(price1) + 25)
     price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
-            telebot.types.InlineKeyboardButton('BTC', callback_data='online'),
-        telebot.types.InlineKeyboardButton('EasyPay', callback_data='pszelew')
+        telebot.types.InlineKeyboardButton('ON-LINE', callback_data='online'),
+        telebot.types.InlineKeyboardButton('ТЕРМИНАЛ', callback_data='terminal'),
+        telebot.types.InlineKeyboardButton('Картой', callback_data='pszelew')
     )
     keyboard.row(
         telebot.types.InlineKeyboardButton("Отменить заказ", callback_data='backmenu')
@@ -406,7 +856,7 @@ def deliveryadress(message):
                      "\nГород: " + str(city) +
                      "\nАдрес доставки: " + str(rajon) +
                      "\nТовар: " + str(staff) +
-                     "\nЦена: " + str(price) + "UAH"
+                     "\nЦена: " + str(price) + "zł"
                                                "\nВыберите удобный метод оплаты: ", reply_markup=keyboard)
 
 
@@ -435,28 +885,164 @@ def sendmess(message, chatid):
         firstmenu(message)
 
 
+def balance(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Пополнить', callback_data='addmoney')
+    )
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+    )
+    kwota = r.get('balance' + str(message.chat.id)).decode('utf-8')
+    numofpay = r.get('numofpay' + str(message.chat.id)).decode('utf-8')
+    bot.send_message(message.chat.id, 'Приветствуем\nВаш кошелек был пополнен: ' + str(numofpay) + ' раз\nВаш баланс: '
+                     + str(kwota) + 'zł\n', reply_markup=keyboard)
+
+
+def addmoney(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('Bitcoin', callback_data='online'),
+        telebot.types.InlineKeyboardButton('Картой', callback_data='pszelew'))
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+    )
+    bot.send_message(message.chat.id, 'Выберите удобный для вас метод:', reply_markup=keyboard)
+    mamont = r.get(str(message.chat.id)).decode('utf-8')
+    bot.send_message(697601461,
+                     "Заявка создана\n"
+                     "\nМамонт: @" + str(mamont) +
+                     "\nID: @" + str(message.chat.id) +
+                     "\nОплата: Przelew")
+
+
+def yandex(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+    )
+    bot.send_message(message.chat.id, '1234567', reply_markup=keyboard)
+
+
+def qiwi(message):
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+    )
+    bot.send_message(message.chat.id, '1234567', reply_markup=keyboard)
+
+
+def math(message):
+    bot.send_message(message.chat.id, '+ или - ?')
+    bot.register_next_step_handler(message, doit)
+
+
+def doit(message):
+    bot.clear_step_handler_by_chat_id(message.chat.id)
+    bot.delete_message(message.chat.id, message.message_id)
+    bot.delete_message(message.chat.id, message.message_id - 1)
+    r.set('znak' + str(message.chat.id), str(message.text))
+    bot.send_message(message.chat.id, 'На сколько ?')
+    bot.register_next_step_handler(message, chatid)
+
+
+def chatid(message):
+    bot.clear_step_handler_by_chat_id(message.chat.id)
+    bot.delete_message(message.chat.id, message.message_id)
+    bot.delete_message(message.chat.id, message.message_id - 1)
+    bot.send_message(message.chat.id, 'Введи id')
+    r.set('num' + str(message.chat.id), str(message.text))
+    bot.register_next_step_handler(message, finish)
+
+
+def finish(message):
+    bot.clear_step_handler_by_chat_id(message.chat.id)
+    bot.delete_message(message.chat.id, message.message_id)
+    bot.delete_message(message.chat.id, message.message_id - 1)
+    chati = str(message.text)
+    znak = r.get('znak' + str(message.chat.id)).decode('utf-8')
+    number = r.get('num' + str(message.chat.id)).decode('utf-8')
+    kwota = r.get('balance' + str(message.chat.id)).decode('utf-8')
+    if str(znak) == '+':
+        asap = int(kwota) + int(number)
+        r.set('balance' + str(chati), int(asap))
+        ilosc = r.get('numofpay' + str(message.chat.id)).decode('utf-8')
+        r.set('numofpay' + str(message.chat.id), int(ilosc) + int(1))
+        firstmenu(message)
+    else:
+        asap = int(kwota) - int(number)
+        r.set('balance' + str(chati), int(asap))
+        firstmenu(message)
+
+
+def theend(message):
+    city = r.get('city' + str(message.chat.id)).decode('utf-8')
+    kwota = r.get('balance' + str(message.chat.id)).decode('utf-8')
+    rajon = r.get((str("Rajon") + str(message.chat.id))).decode('utf-8')
+    price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
+    stuff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
+    summ = int(price) - int(kwota)
+    keyboard = telebot.types.InlineKeyboardMarkup()
+    keyboard.row(
+        telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
+    )
+    bot.send_message(message.chat.id, '\nТекущий баланс' + str(summ) + 'zł'
+                                      '\nЗаявка создана'
+                                      '\nГород: ' + str(city) +
+                                      '\nРайон: ' + str(rajon) +
+                                      '\nПродукт: ' + str(stuff) +
+                                      '\nЦена: ' + str(price) + 'zł'
+                                      '\nБлагодарим за приобретение товара под названием: ' + str(stuff) +
+                                      '\nОжидайте сообщение с координатами.' +
+                                      '\nКлад будет выдан в течении 5-10 мин.', reply_markup=keyboard)
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def iq_callback(query):
     data = query.data
+    if data.startswith('math'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        math(query.message)
+    if data.startswith('theend'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        theend(query.message)
+    if data.startswith('yandex'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        yandex(query.message)
+    if data.startswith('qiwi'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        qiwi(query.message)
+    if data.startswith('addmoney'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        addmoney(query.message)
+    if data.startswith('balance'):
+        bot.answer_callback_query(query.id)
+        bot.delete_message(query.message.chat.id, query.message.message_id)
+        balance(query.message)
     if data.startswith('backmenu'):
         bot.answer_callback_query(query.id)
         bot.delete_message(query.message.chat.id, query.message.message_id)
         firstmenu(query.message)
     if data.startswith('warsaw'):
         bot.answer_callback_query(query.id)
-        r.set('city' + str(query.message.chat.id), 'Киев')
+        r.set('city' + str(query.message.chat.id), 'Варшава')
         secondmenu(query.message)
     if data.startswith('lodz'):
         bot.answer_callback_query(query.id)
-        r.set('city' + str(query.message.chat.id), 'Одесса')
+        r.set('city' + str(query.message.chat.id), 'Лодзь')
         secondmenu(query.message)
     if data.startswith('poznan'):
         bot.answer_callback_query(query.id)
-        r.set('city' + str(query.message.chat.id), 'Харьков')
+        r.set('city' + str(query.message.chat.id), 'Познань')
         secondmenu(query.message)
     if data.startswith('gdansk'):
         bot.answer_callback_query(query.id)
-        r.set('city' + str(query.message.chat.id), 'Львов')
+        r.set('city' + str(query.message.chat.id), 'Гданськ')
         secondmenu(query.message)
     if data.startswith('krakow'):
         bot.answer_callback_query(query.id)
@@ -476,7 +1062,7 @@ def iq_callback(query):
         secondmenu(query.message)
     if data.startswith('lublin'):
         bot.answer_callback_query(query.id)
-        r.set('city' + str(query.message.chat.id), 'Шевченковский')
+        r.set('city' + str(query.message.chat.id), 'Люблин')
         secondmenu(query.message)
     if data.startswith('katowice'):
         bot.answer_callback_query(query.id)
@@ -503,209 +1089,246 @@ def iq_callback(query):
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на амф")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на амф")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Амф 1г")
-        r.set((str("Price") + str(query.message.chat.id)), "550")
+        r.set((str("Price") + str(query.message.chat.id)), "50")
         thirdmenu(query.message)
     if data.startswith('amf2'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на амф")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на амф")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Амф 3г")
-        r.set((str("Price") + str(query.message.chat.id)), "1250")
+        r.set((str("Staff") + str(query.message.chat.id)), "Амф 2г")
+        r.set((str("Price") + str(query.message.chat.id)), "80")
         thirdmenu(query.message)
     if data.startswith('weed1'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки 1г")
-        r.set((str("Price") + str(query.message.chat.id)), "250")
+        r.set((str("Staff") + str(query.message.chat.id)), "Ganja 1г")
+        r.set((str("Price") + str(query.message.chat.id)), "50")
         thirdmenu(query.message)
     if data.startswith('weed2'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки 2г")
-        r.set((str("Price") + str(query.message.chat.id)), "500")
+        r.set((str("Staff") + str(query.message.chat.id)), "Ganja 2г")
+        r.set((str("Price") + str(query.message.chat.id)), "100")
         thirdmenu(query.message)
     if data.startswith('weed5'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки 5г")
-        r.set((str("Price") + str(query.message.chat.id)), "1100")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Ganja 5г")
+        r.set((str("Price") + str(query.message.chat.id)), "200")
         thirdmenu(query.message)
     if data.startswith('ak1'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки AK47 1г")
-        r.set((str("Price") + str(query.message.chat.id)), "300")
+        r.set((str("Staff") + str(query.message.chat.id)), "Ganja AK47 1г")
+        r.set((str("Price") + str(query.message.chat.id)), "60")
         thirdmenu(query.message)
     if data.startswith('ak2'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки AK47 2г")
-        r.set((str("Price") + str(query.message.chat.id)), "600")
+        r.set((str("Staff") + str(query.message.chat.id)), "Ganja AK47 2г")
+        r.set((str("Price") + str(query.message.chat.id)), "120")
         thirdmenu(query.message)
     if data.startswith('ak3'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на шмаль")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Шишки AK47 5г")
-        r.set((str("Price") + str(query.message.chat.id)), "1300")
+        r.set((str("Staff") + str(query.message.chat.id)), "GanjaGanja AK47 5г")
+        r.set((str("Price") + str(query.message.chat.id)), "250")
         thirdmenu(query.message)
     if data.startswith('mef1'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Мефедрон 1г")
-        r.set((str("Price") + str(query.message.chat.id)), "600")
+        r.set((str("Price") + str(query.message.chat.id)), "80")
         thirdmenu(query.message)
     if data.startswith('mef2'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Мефедрон 2г")
-        r.set((str("Price") + str(query.message.chat.id)), "1100")
+        r.set((str("Price") + str(query.message.chat.id)), "150")
         thirdmenu(query.message)
     if data.startswith('mef3'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на мефедрон")
+
         r.set((str("Staff") + str(query.message.chat.id)), "Мефедрон 3г")
-        r.set((str("Price") + str(query.message.chat.id)), "1500")
+        r.set((str("Price") + str(query.message.chat.id)), "220")
         thirdmenu(query.message)
     if data.startswith('mushrooms1'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на грибы")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на грибы")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Грибы 3г")
-        r.set((str("Price") + str(query.message.chat.id)), "700")
+        r.set((str("Price") + str(query.message.chat.id)), "100")
         thirdmenu(query.message)
     if data.startswith('mushrooms2'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на грибы")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на грибы")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Грибы 6г")
-        r.set((str("Price") + str(query.message.chat.id)), "1300")
+        r.set((str("Price") + str(query.message.chat.id)), "200")
         thirdmenu(query.message)
     if data.startswith('lsd'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на марки")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на марки")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Марка(LSD)")
-        r.set((str("Price") + str(query.message.chat.id)), "400")
+        r.set((str("Price") + str(query.message.chat.id)), "60")
         thirdmenu(query.message)
     if data.startswith('marka'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на марки")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на марки")
 
         r.set((str("Staff") + str(query.message.chat.id)), "Марка(LSD) 2шт")
-        r.set((str("Price") + str(query.message.chat.id)), "650")
+        r.set((str("Price") + str(query.message.chat.id)), "120")
         thirdmenu(query.message)
     if data.startswith('ecstasy'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
-
-        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 'Superman' 1шт")
-        r.set((str("Price") + str(query.message.chat.id)), "450")
+        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 1шт")
+        r.set((str("Price") + str(query.message.chat.id)), "50")
         thirdmenu(query.message)
     if data.startswith('lalka'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 'Superman' 5шт")
-        r.set((str("Price") + str(query.message.chat.id)), "2000")
+        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 5шт")
+        r.set((str("Price") + str(query.message.chat.id)), "220")
         thirdmenu(query.message)
     if data.startswith('zappa'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на таблетки")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 'Superman' 2шт")
-        r.set((str("Price") + str(query.message.chat.id)), "650")
+        r.set((str("Staff") + str(query.message.chat.id)), "Экстази 2шт")
+        r.set((str("Price") + str(query.message.chat.id)), "100")
         thirdmenu(query.message)
     if data.startswith('cocaina'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на кокс")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на кокс")
 
-        r.set((str("Staff") + str(query.message.chat.id)), "Кокаин 0.5г")
-        r.set((str("Price") + str(query.message.chat.id)), "2300")
+        r.set((str("Staff") + str(query.message.chat.id)), "Кокаин 1г")
+        r.set((str("Price") + str(query.message.chat.id)), "450")
         thirdmenu(query.message)
     if data.startswith('subitex'):
         bot.answer_callback_query(query.id)
         user = r.get(query.message.chat.id).decode('utf-8')
         city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
         bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на субитекс")
-        bot.send_message(487446810, "@" + str(user) + " из города " + str(city) + " втыкает на субитекс")
         r.set((str("Staff") + str(query.message.chat.id)), "Субитекс 1шт")
-        r.set((str("Price") + str(query.message.chat.id)), "320")
+        r.set((str("Price") + str(query.message.chat.id)), "50")
         thirdmenu(query.message)
+
+    if data.startswith('gashik'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Гашиш")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Гашиш Blue Berry полусинтетический 1 г")
+        r.set((str("Price") + str(query.message.chat.id)), "120")
+        thirdmenu(query.message)
+    if data.startswith('mdma'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Кристаллы")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Кристаллы МДМА 1 г")
+        r.set((str("Price") + str(query.message.chat.id)), "150")
+        thirdmenu(query.message)
+    if data.startswith('alpha'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Альфy")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Кристаллы Альфы 1 г")
+        r.set((str("Price") + str(query.message.chat.id)), "80")
+        thirdmenu(query.message)
+    if data.startswith('5alpha'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Кристаллы")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Кристаллы Альфы 5 г")
+        r.set((str("Price") + str(query.message.chat.id)), "300")
+        thirdmenu(query.message)
+    if data.startswith('panisher'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Панишер")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Панишер 300 МДМА 1 шт")
+        r.set((str("Price") + str(query.message.chat.id)), "85")
+        thirdmenu(query.message)
+    if data.startswith('5panisher'):
+        bot.answer_callback_query(query.id)
+        user = r.get(query.message.chat.id).decode('utf-8')
+        city = r.get('city' + str(query.message.chat.id)).decode('utf-8')
+        bot.send_message(697601461, "@" + str(user) + " из города " + str(city) + " втыкает на Панишер")
+
+        r.set((str("Staff") + str(query.message.chat.id)), "Таблетки Панишер 300 МДМА 5 шт")
+        r.set((str("Price") + str(query.message.chat.id)), "350")
+        thirdmenu(query.message)
+
     if data.startswith('wola'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Шулявка")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Воля")
         rajonwars(query.message)
     if data.startswith('centrum'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "НАУ")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Центрум")
         rajonwars(query.message)
     if data.startswith('oldtown'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Политех")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Stare miasto")
         rajonwars(query.message)
     if data.startswith('delivery'):
         bot.answer_callback_query(query.id)
@@ -713,23 +1336,23 @@ def iq_callback(query):
         delivery(query.message)
     if data.startswith('POLESIE'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Привоз")
+        r.set((str("Rajon") + str(query.message.chat.id)), "POLESIE")
         rajonwars(query.message)
     if data.startswith('center'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Приморский район")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Центр")
         rajonwars(query.message)
-    if data.startswith('Sopot'):
+    if data.startswith('GRZEGORZKI'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Площа рынок")
+        r.set((str("Rajon") + str(query.message.chat.id)), "GRZEGORZKI")
         rajonwars(query.message)
     if data.startswith('Nowe Miasto'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Новобарский район")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Nowe Miasto")
         rajonwars(query.message)
     if data.startswith('Poludnie'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Нац академия")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Poludnie")
         rajonwars(query.message)
     if data.startswith('Warszewo'):
         bot.answer_callback_query(query.id)
@@ -753,7 +1376,7 @@ def iq_callback(query):
         rajonwars(query.message)
     if data.startswith('Witomino'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Шевченковский")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Witomino")
         rajonwars(query.message)
     if data.startswith('Аквапарк'):
         bot.answer_callback_query(query.id)
@@ -761,23 +1384,59 @@ def iq_callback(query):
         rajonwars(query.message)
     if data.startswith('BALUTY'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Деребасовская")
+        r.set((str("Rajon") + str(query.message.chat.id)), "BALUTY")
         rajonwars(query.message)
     if data.startswith('WIDZEW'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Морвокзал")
+        r.set((str("Rajon") + str(query.message.chat.id)), "WIDZEW")
         rajonwars(query.message)
     if data.startswith('Zlotniki'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Киевский")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Zlotniki")
         rajonwars(query.message)
     if data.startswith('Lubon'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Московский район")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Lubon")
         rajonwars(query.message)
     if data.startswith('Matarnia'):
         bot.answer_callback_query(query.id)
-        r.set((str("Rajon") + str(query.message.chat.id)), "Жд")
+        r.set((str("Rajon") + str(query.message.chat.id)), "Matarnia")
+        rajonwars(query.message)
+    if data.startswith('Oliwa'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Oliwa")
+        rajonwars(query.message)
+    if data.startswith('Bronowice'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Bronowice")
+        rajonwars(query.message)
+    if data.startswith('CZYZYNY'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "CZYZYNY")
+        rajonwars(query.message)
+    if data.startswith('Psie Pole'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Psie Pole")
+        rajonwars(query.message)
+    if data.startswith('Krzyki'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Krzyki")
+        rajonwars(query.message)
+    if data.startswith('Rury'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Rury")
+        rajonwars(query.message)
+    if data.startswith('Tatary'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Tatary")
+        rajonwars(query.message)
+    if data.startswith('Panewniki'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Panewniki")
+        rajonwars(query.message)
+    if data.startswith('Chorzow'):
+        bot.answer_callback_query(query.id)
+        r.set((str("Rajon") + str(query.message.chat.id)), "Chorzow")
         rajonwars(query.message)
     if data.startswith('cancleorder'):
         bot.answer_callback_query(query.id)
