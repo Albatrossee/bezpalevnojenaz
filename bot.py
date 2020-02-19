@@ -982,6 +982,7 @@ def theend(message):
     price = r.get((str("Price") + str(message.chat.id))).decode('utf-8')
     stuff = r.get((str("Staff") + str(message.chat.id))).decode('utf-8')
     summ = int(price) - int(kwota)
+    r.set('balance' + str(message.chat.id), int(summ))
     keyboard = telebot.types.InlineKeyboardMarkup()
     keyboard.row(
         telebot.types.InlineKeyboardButton('На главную', callback_data='backmenu')
